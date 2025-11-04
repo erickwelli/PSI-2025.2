@@ -19,11 +19,15 @@ def contato():
 def dados():
     return render_template('dados.html')
 
-@app.route('/recebedados', methods=['GET'])
+@app.route('/recebedados', methods=['POST'])
 def recebedados():
-    nome = request.args['nome']
-    telefone = request.args['telefone']
-    return "{} - {}".format(nome, telefone)
+    #nome = request.args['nome']
+    #telefone = request.args['telefone']
+    nome = request.form['nome']
+    telefone = request.form['telefone']
+    estado = request.form['estado']
+    escolaridade = request.form.getlist('esc')
+    return f'{nome} - {telefone} - {estado} - {escolaridade}'
 
 @app.route('/login')
 def login():
